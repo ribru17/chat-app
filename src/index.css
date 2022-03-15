@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+}
+
+#messageContainer {
+    padding: 5%;
+    height: 50vh;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    width: 80%;
+}
+
+#inputContainer {
+    padding: 5%;
+    width: 50%;
+}
+
+#nameCont {
+    width: 40%;
+}
+
+#nameInput {
+    width: 90%;
+    padding: 2% 5% 2% 5%;
+    color: forestgreen;
+    font-weight: bold;
+}
+
+#messageField {
+    width: 90%;
+    padding: 5%;
+    
+    border-radius: 15px;
+    border: 2px solid indianred ;
+}
+
+.myMessages {
+    color: forestgreen;
+    text-align: right;
+}
+
+nav {
+    width: 100vw;
+    height: 40px;
+    background-color: #B5C9C3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.nav-link {
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    -webkit-app-region: no-drag;
+}
+
+#currentUsers {
+    position: absolute;
+    left: 25px;
+    bottom: 25px; /* 25 + navheight (40) */
+    background-color: aqua;
+    /* padding-left: 5%;
+    padding-right: 5%; */
+    padding: 5%;
+    overflow-y: auto;
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+#currentUsers::-webkit-scrollbar {
+    width: 0px;
+}
+
+.updoot {
+    /* right: 5%;
+    position: absolute; */
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+#mainroot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.myUpdootDiv {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 5%;
+}
+
+.updootDiv {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.likedMsg {
+    color: orange;
+}
+
+.myClip {
+    position: absolute;
+    right: 5%;
+}
