@@ -3,6 +3,13 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: "Futura";
+    /* src: url('/public/futura\ medium\ condensed\ bt.ttf')format("truetype"); */
+    /* src: url('./static/futura\ medium\ condensed\ bt.ttf')format("truetype"); */
+    src: url('./static/Bullpen3D.ttf')format("truetype");
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -10,6 +17,9 @@ body {
     justify-content: center;
     background-color: aliceblue;
     overflow: hidden;
+    font-family: "Futura";
+    font-weight: bold;
+    font-size: 26;
 }
 
 h1 {

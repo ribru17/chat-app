@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as ReactDOM from 'react-dom';
 import socket, { peer } from './renderer'
+// import socket from './renderer'
+// import Peer from 'peerjs'
 
+// let peer: Peer
 type user = {name: string, id: string, me: boolean, rtcID: string}
 type message = {message: string, author: string, isLiked: boolean, updoots: number, mine: boolean, isClip: boolean}
 function App() {
@@ -122,7 +125,7 @@ function App() {
             audio: true
         }).then(stream => {
             // addVideoStream(myVideo, stream)
-        
+            // let thing: P
             peer.on('call', (call: any) => {
                 console.log("got call");
                 

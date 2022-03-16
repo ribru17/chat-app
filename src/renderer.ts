@@ -28,6 +28,7 @@
 
 import './index.css';
 import './app';
+// import Peer from 'peerjs'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const io: any;
@@ -41,6 +42,7 @@ const socket = io("https://rb-chat.herokuapp.com/", {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Peer: any;
 // const peer = new Peer()
+// const peer = appipc.window.peer()
 // const peer = new Peer({host:'rb-chat.herokuapp.com', secure:true, port:'443', path: '/myapp'})
 const peer = new Peer()
 export default socket
@@ -54,8 +56,8 @@ const closeButton = document.getElementById('closeButton')
 document.addEventListener('keydown', (e) => { //disable refresh
     if (e.ctrlKey) {
         if (e.key == 'r' || e.key == 'R') {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
         }
     }
 })

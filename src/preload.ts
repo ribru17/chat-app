@@ -1,5 +1,6 @@
 import { ipcRenderer, contextBridge } from 'electron'
-
+// import Peer from 'peerjs'
+// const Peer = require('peerjs')
 // window.addEventListener('DOMContentLoaded', () => {
 //     const replaceText = (selector, text) => {
 //       const element = document.getElementById(selector)
@@ -20,7 +21,8 @@ import { ipcRenderer, contextBridge } from 'electron'
 const API = {
     window: {
         close: () => ipcRenderer.send("app/close"),
-
+        // peer: async () => import('peerjs')
+        // peer: Peer
     }
 }
 
