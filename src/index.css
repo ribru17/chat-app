@@ -19,7 +19,7 @@ body {
     overflow: hidden;
     font-family: "Futura";
     font-weight: bold;
-    font-size: 26;
+    /* font-size: 22px; */
 }
 
 h1 {
@@ -75,6 +75,8 @@ nav {
     -webkit-app-region: drag;
     -webkit-user-select: none;
     user-select: none;
+    /* position: absolute;
+    top: 0px; */
 }
 
 .nav-link {

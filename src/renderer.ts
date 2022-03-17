@@ -28,25 +28,24 @@
 
 import './index.css';
 import './app';
-// import Peer from 'peerjs'
+import { io, Socket } from 'socket.io-client';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const io: any;
+// declare const io: any;
 
 // socket usually connects with multiple options per
 // different browsers but this is fine as we are always in chromium
 
-const socket = io("https://rb-chat.herokuapp.com/", { 
+const socket: Socket = io("https://rb-chat.herokuapp.com/", { 
     transports: ["websocket"]
 });
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Peer: any;
-// const peer = new Peer()
-// const peer = appipc.window.peer()
-// const peer = new Peer({host:'rb-chat.herokuapp.com', secure:true, port:'443', path: '/myapp'})
 const peer = new Peer()
-export default socket
+
 export {peer}
+
+export default socket
  
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const appipc: any;
@@ -62,6 +61,15 @@ document.addEventListener('keydown', (e) => { //disable refresh
     }
 })
 
+// let peer = appipc.window.peer()
+// console.log(thing);
+// ipcMain.on('sendingPeer', (e: any, args: any) => {
+//     console.log(args);
+    
+// })
+
+// appipc.window.getGot()
+// appipc.window.getSocket()
 closeButton.addEventListener('click', () => {
     appipc.window.close()
 })

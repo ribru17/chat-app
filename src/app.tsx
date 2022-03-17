@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef, Fragment } from 'react';
 import * as ReactDOM from 'react-dom';
 import socket, { peer } from './renderer'
 // import socket from './renderer'
-// import Peer from 'peerjs'
 
-// let peer: Peer
 type user = {name: string, id: string, me: boolean, rtcID: string}
 type message = {message: string, author: string, isLiked: boolean, updoots: number, mine: boolean, isClip: boolean}
+// interface peers {
+//     [peerId: string]: PeerType.MediaConnection
+// }
 function App() {
-
     const [users, setUsers] = useState<user[]>([])
     const [textMessages, setMessages] = useState<message[]>([])
     const [prevMessageLength, setPrevMessageLength] = useState(0)
@@ -96,16 +96,11 @@ function App() {
             })
         })
         socket.on('clipReceived', (base64: string, name: string, id: string) => {
-            console.log('received clip');
+            // console.log('received clip');
             
             setMessages(prev => {
                 // console.log(prev);
                 const isMine = id === document.getElementById('userInfo').getAttribute('data-id')
-                // setMyId((prev: string) => {
-                //     isMine = id === prev
-                //     return prev
-                // })
-                // console.log(id, myId, isMine);
                 
                 const newMessage: message = {message: base64, author: name, mine: isMine, updoots: 0, isLiked: false, isClip: true}
                 return [
@@ -127,13 +122,13 @@ function App() {
             // addVideoStream(myVideo, stream)
             // let thing: P
             peer.on('call', (call: any) => {
-                console.log("got call");
+                // console.log("got call");
                 
                 call.answer(stream)
                 const video = document.createElement('video')
                 call.on('stream', (userVideoStream: MediaStream) => {
                     addVideoStream(video, userVideoStream)
-                    console.log("got stream");
+                    // console.log("got stream");
                     
                 })
             })
@@ -141,37 +136,37 @@ function App() {
             // socket.on('user-connected', (userId: string) => {
             //     connectToNewUser(userId, stream)
             // })
-            socket.on('peerReceived', (peerId: string, socketId: string) => {
+            socket.on('peerReceived', (peerId: string) => {
                 if (peerId === peer.id) return
-                console.log("got peer" + peerId);
+                // console.log("got peer" + peerId);
                 const call = peer.call(peerId, stream)
                 const video = document.createElement('audio')
                 call.on('stream', (userVideoStream: MediaStream) => {
                     addVideoStream(video, userVideoStream)
-                    console.log("got call stream" + stream);
+                    // console.log("got call stream" + stream);
                     
                 })
                 call.on('close', () => {
-                    console.log("closing video");
+                    // console.log("closing video");
                     
                     video.remove()
                 })
 
                 setPeers((prev: any) => {
                     prev[peerId] = call
-                    console.log("peers: " + prev[peerId]);
+                    // console.log("peers: " + prev[peerId]);
                     
                     return prev
                 })
             })
         })
         peer.on('open', (id: string) => {
-            console.log(`HI ${id}`);
+            // console.log(`HI ${id}`);
             setUsers(prev => {
                 prev.find((user) => {
                     return user.me
                 }).rtcID = id
-                console.log(prev);
+                // console.log(prev);
                 
                 return prev
             })
@@ -251,16 +246,6 @@ function App() {
             socket.emit('updootConfirmSent', index)
         }
     }
-    
-    // Array.from(document.getElementsByClassName('clips')).forEach((element: HTMLVideoElement) => {
-    //     element.addEventListener('click', () => {
-    //         if (element.paused) {
-    //             element.play()
-    //         } else {
-    //             element.pause()
-    //         }
-    //     })
-    // })
 
     return (
         <div id="mainroot">
@@ -274,7 +259,6 @@ function App() {
             </div>
         </nav>
         <div id="userInfo" data-name="Anonymous"></div>
-        <h1>CHATAPP</h1>
         <div id="messageContainer" ref={messageCont}>
             {<>
             {textMessages.map((msg, i) => {
@@ -306,10 +290,8 @@ function App() {
             })}
             </>}
         </div>
-        <button onClick={() => {console.log("hi");
-        }}>HI.</button>
         <img ref={testImg}></img>
-        <div id="videoGrid" style={{position: 'absolute', width: 500, height: 500}}></div>
+        <div id="videoGrid"></div>
         </div>
     )
 }
